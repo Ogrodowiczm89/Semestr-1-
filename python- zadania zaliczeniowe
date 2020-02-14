@@ -1,0 +1,181 @@
+zadanie 1 
+
+print("Wprowadz liczbe")
+liczba = int(input())
+for i in range(1, liczba+1):
+  if (liczba%i==0):
+    print(i)
+    
+zadanie 6 
+def dodawanie_ulamkow(licznik_1, mianownik_1, licznik_2, mianownik_2):
+  if(mianownik_1 == mianownik_2):
+    licznik_3 = licznik_1 + licznik_2
+    print("Ulamek jest rowny", licznik_3,"/",mianownik_1)
+    return
+  else:
+    mianownik_3 = mianownik_1 * mianownik_2
+    licznik_3_1 = licznik_1 * mianownik_2
+    licznik_3_2 = licznik_2 * mianownik_1
+    licznik_4 = licznik_3_1 + licznik_3_2
+    print("Ulamek jest rowny", licznik_4,"/",mianownik_3)
+    
+print("Podaj licznik1")
+licznik_1 = int(input())
+print("Podaj mianownik1")
+mianownik_1 = int(input())
+print("Podaj licznik2")
+licznik_2 = int(input())
+print("Podaj mianownik2")
+mianownik_2 = int(input())
+
+ulamek = dodawanie_ulamkow(licznik_1, mianownik_1, licznik_2, mianownik_2)
+
+
+zadanie 7 
+a = list(input('''zdanie:
+'''))
+aOdwr = list()
+    
+for i in reversed(range(0,len(a))):
+    print(a[i])
+    aOdwr.append(a[i])
+    
+print(' '.join(aOdwr))
+
+zadanie 8
+a = float((input('''punkty:
+''')))*2.5
+    
+if a <= 39:
+    print('ndst')
+elif a <= 49:
+    print('dop')
+elif a<= 69:
+    print('dst')
+elif a<= 84:
+    print('db')
+elif a<= 99:
+    print('bdb')
+else:
+    print('cel')  
+    
+zadanie 19 
+def dni_miesiaca_przestepny(miesiac):
+  if isinstance(miesiac, str):
+    miesiac = miesiac.lower()
+    dict = { 'styczen' : '31',
+    'luty' : '29',
+    'marzec' : '31',
+    'kwiecien' : '30',
+    'maj' : '31',
+    'czerwiec' : '30',
+    'lipiec' : '31',
+    'sierpien' : '31',
+    'wrzesien' : '30',
+    'pazdziernik' : '31',
+    'listopad' : '30',
+    'grudzien' : '31'}
+    return dict[miesiac] if miesiac in dict else 0
+ 
+def dni_miesiaca_nieprzestepny(miesiac):
+  if isinstance(miesiac, str):
+    miesiac = miesiac.lower()
+    dict = { 'styczen' : '31',
+    'luty' : '28',
+    'marzec' : '31',
+    'kwiecien' : '30',
+    'maj' : '31',
+    'czerwiec' : '30',
+    'lipiec' : '31',
+    'sierpien' : '31',
+    'wrzesien' : '30',
+    'pazdziernik' : '31',
+    'listopad' : '30',
+    'grudzien' : '31'}
+    return dict[miesiac] if miesiac in dict else 0
+ 
+ 
+ 
+print("Podaj rok")
+rok = int(input())
+print("Wybierz miesiac")
+miesiac = input()
+if(rok % 4 == 0):
+  print(dni_miesiaca_przestepny(miesiac))
+else:
+  print(dni_miesiaca_nieprzestepny(miesiac))
+  
+
+zadanie 20 
+def translate_month(month):
+    months = {
+        'styczeń': 'January',
+        'luty': 'February',
+        'marzec': 'March', 
+        'kwiecień': 'April',
+        'maj': 'May', 
+        'czerwiec': 'June',
+        'lipiec': 'July',
+        'siepień': 'August',
+        'wrzesień': 'September',
+        'październik': 'October',
+        'listopad': 'November',
+        'grudzień': 'December'
+    }
+    
+    month = month.strip().lower()
+    print('Not a valid month name') if month not in months.keys() else print(months[month])
+
+translate_month('test')
+translate_month(' październik')
+
+
+zadanie 23
+from collections import Counter
+
+def checkList(listOfElements):
+    return all(isinstance(element, (int, float)) for element in listOfElements)
+
+def mode(listOfNumbers):
+    try:
+        assert checkList(listOfNumbers)
+        return Counter(listOfNumbers).most_common(1)[0][0]
+    
+    except AssertionError:
+        print("Niepoprawny typ elementów listy.")
+
+print(mode([1,2,3,4,5,5,5,5,6,5,4,3,2]))
+
+
+zadanie 26
+def calcSkos(x):
+    suma = 0
+    sr = calcMean(x)
+    for i in range(len(x)):
+        suma = suma + (x[i] - sr)**3
+    return ((suma/len(x))*(1/calcStdDev(x)**3))
+    
+
+zadanie 27
+def kurtoza(x):
+    kurt = 4
+    if kurt == 4:
+        return moment(x, moment = kurt)
+kurtoza([5.0,6.3,3.4,5.6,3.4])
+
+
+zadanie 30
+data = np.random.normal(loc=np.random.random(), scale=np.random.random(), size=np.random.randint(1, 100))
+plt.hist(data, alpha=0.67)
+plt.axvline(np.mean(data), color='r')
+plt.axvline(np.median(data), color='g')
+plt.axvline(np.std(data))
+plt.axvline(kurtosis(data))
+plt.axvline(skew(data))
+plt.show()
+
+print(np.mean(data))
+print(np.median(data))
+print(np.std(data))
+print(kurtosis(data))
+print(skew(data))
