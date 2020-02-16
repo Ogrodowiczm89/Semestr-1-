@@ -59,6 +59,62 @@ elif a<= 99:
 else:
     print('cel')  
     
+
+Zadanie 13
+
+print('symbol Newtona n po k')
+print('Podaj wartość n:')
+n = int(input())
+k = int(input())
+
+
+def silnia(n):
+    if n == 1:
+        return 1
+
+
+    else:
+        return n * silniaRekur(n-1)
+    
+def symbolNewtona(n,k):
+    if (n>=k) and (k>=0):
+        wynik = silnia(n)/((silnia(k)*silnia(n-k)))
+        return wynik
+    else:
+        print('BŁĄD')
+
+
+print('n po k dla twoich liczb wynosi:')
+print(symbolNewtona(n,k))
+
+
+Zadanie 17 
+
+import numpy as np
+
+def linearFunciton(a,b):
+    if not (numberChecker(a) and numberChecker(b)): return None
+    x = np.arange(-20,20,0.1)
+    return x, list(map(lambda y: a*y+b, x))
+
+def squareFunction(a,b,c):
+    if not (numberChecker(a) and numberChecker(b) and numberChecker(c)): return None
+    x = np.arange(-20,20,0.1)
+    return x, list(map(lambda y: a*y**2+b*y+c, x))
+
+
+def inverseExponentialFunction(a,n):
+    if not (numberChecker(a) and numberChecker(n)): return None
+    x = list(np.arange(-2,2,0.5))
+    if 0 in x: x.remove(0)
+    return x, list(map(lambda y: a/(y**n), x))
+
+inverseExponentialFunction(1,1)
+
+
+
+
+    
 zadanie 19 
 def dni_miesiaca_przestepny(miesiac):
   if isinstance(miesiac, str):
@@ -179,3 +235,36 @@ print(np.median(data))
 print(np.std(data))
 print(kurtosis(data))
 print(skew(data))
+
+
+Zadanie 35
+
+class ProstyProstokat():
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+        
+    def obwod (self):
+        return 2*self.a+2*self.b
+
+    def pole (self):
+        return self.a*self.b
+        
+print ('podaj długosc boku A')
+BokA = int(input())
+print ('podaj długosc boku B')
+BokB = int(input())
+        
+x = ProstyProstokat (BokA,BokB)
+print ("Obwód Prostrojąta wynosi", x.obwod())
+print ('Pole Prostokąta wynosi', x.pole())
+
+# po przez dziedziczenie klas tworzę klasę kwadrat
+class ProstyKwadrat(ProstyProstokat):
+    def __init__(self, a):
+        super().__init__(a, a)
+
+y = ProstyKwadrat (BokA)
+print ("Obwód Kwadratu wynosi", y.obwod())
+print ('Pole kwadratu wynosi', y.pole())
+
